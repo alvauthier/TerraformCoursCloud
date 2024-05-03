@@ -228,7 +228,7 @@ resource "null_resource" "installscript" {
       "sudo chmod 777 ./default",
       "sudo chmod 777 ./back.env",
       "sudo chmod 777 ./front.env",
-      "./script.sh",
+      "./script.sh ${var.username}",
     ]
   }
 

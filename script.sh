@@ -1,5 +1,7 @@
 #!/bin/bash
 
+USERNAME=$1
+
 sudo apt update
 sudo apt install git docker.io docker-compose-v2 nodejs npm nginx -y
 sudo systemctl start nginx
@@ -17,10 +19,9 @@ cd backend
 sudo npm install
 
 sudo rm .env
-sudo cp /home/Alexandre/back.env /var/www/html/vue/ChallengeS2/backend/.env
+sudo cp /home/$USERNAME/back.env /var/www/html/vue/ChallengeS2/backend/.env
 sudo cp /var/www/html/vue/ChallengeS2/backend/.env /var/www/html/vue/ChallengeS2/backend/.env.local
 
-# cd ChallengeS2/backend
 
 pm2 start npm --name "backend" -- start
 
@@ -29,14 +30,12 @@ cd frontend
 sudo npm install
 
 sudo rm .env
-sudo cp /home/Alexandre/front.env /var/www/html/vue/ChallengeS2/frontend/.env
+sudo cp /home/$USERNAME/front.env /var/www/html/vue/ChallengeS2/frontend/.env
 sudo cp /var/www/html/vue/ChallengeS2/frontend/.env /var/www/html/vue/ChallengeS2/frontend/.env.local
 
 sudo npm run build
 
-sudo cp /home/Alexandre/default /etc/nginx/sites-available/default
+sudo cp /home/$USERNAME/default /etc/nginx/sites-available/default
 
-
-# sudo cp nginx.conf /etc/nginx/sites-available/default
 
 sudo systemctl restart nginx
